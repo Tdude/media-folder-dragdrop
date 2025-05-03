@@ -4,7 +4,7 @@ Categorize media files with drag-and-drop folders in the WordPress Media Library
 
 ## Description
 
-This plugin enhances the WordPress Media Library by allowing users to organize media attachments into hierarchical folders using a drag-and-drop interface. It registers a custom taxonomy called **Media Folders** for attachments, enabling folder-based categorization and filtering of media files directly within the admin area.
+This plugin enhances the WordPress Media Library by allowing users to organize media attachments into hierarchical folders. I wanted a drag-and-drop interface but I'm a shitty coder. Read more below. It registers a custom taxonomy called **Media Folders** for attachments, enabling folder-based categorization and filtering of media files directly within the admin area.
 
 ## Challenges
 
