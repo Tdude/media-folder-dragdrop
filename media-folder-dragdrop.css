@@ -70,3 +70,8 @@
   background: #f3f3f3;
   color: #111;
 }
+
+.media_page_media-folder-filter .wp-filter {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -42,17 +42,30 @@ class Media_Folder_DragDrop {
         add_action('wp_ajax_get_media_folders_for_media', [$this, 'get_media_folders_for_media']);
     }
 
-    // Enqueue JS/CSS for the admin Media Library
+    // Enqueue JS/CSS for the admin Media Library and custom Folder Filter view
     public function enqueue_admin_scripts($hook) {
-        if ($hook !== 'upload.php') return;
-        wp_enqueue_style('media-folder-dragdrop', plugin_dir_url(__FILE__) . 'media-folder-dragdrop.css');
-        wp_enqueue_script('jquery-ui-draggable');
-        wp_enqueue_script('jquery-ui-droppable');
-        wp_enqueue_script('media-folder-dragdrop', plugin_dir_url(__FILE__) . 'media-folder-dragdrop.js', ['jquery', 'jquery-ui-draggable', 'jquery-ui-droppable'], '1.0.0', true);
-        wp_localize_script('media-folder-dragdrop', 'MediaFolderDragDrop', [
-            'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('media_folder_dragdrop'),
-        ]);
+        // Always load on upload.php (default Media Library)
+        if ($hook === 'upload.php') {
+            wp_enqueue_style('media-folder-dragdrop', plugin_dir_url(__FILE__) . 'media-folder-dragdrop.css');
+            wp_enqueue_script('jquery-ui-draggable');
+            wp_enqueue_script('jquery-ui-droppable');
+            wp_enqueue_script('media-folder-dragdrop', plugin_dir_url(__FILE__) . 'media-folder-dragdrop.js', ['jquery', 'jquery-ui-draggable', 'jquery-ui-droppable'], '1.0.0', true);
+            wp_localize_script('media-folder-dragdrop', 'MediaFolderDragDrop', [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('media_folder_dragdrop'),
+            ]);
+        }
+        // Also load on custom Folder Filter view (submenu page)
+        if ($hook === 'media_page_media-folder-filter') {
+            wp_enqueue_style('media-folder-dragdrop', plugin_dir_url(__FILE__) . 'media-folder-dragdrop.css');
+            wp_enqueue_script('jquery-ui-draggable');
+            wp_enqueue_script('jquery-ui-droppable');
+            wp_enqueue_script('media-folder-dragdrop', plugin_dir_url(__FILE__) . 'media-folder-dragdrop.js', ['jquery', 'jquery-ui-draggable', 'jquery-ui-droppable'], '1.0.0', true);
+            wp_localize_script('media-folder-dragdrop', 'MediaFolderDragDrop', [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('media_folder_dragdrop'),
+            ]);
+        }
     }
 
     // AJAX: Move media to folder
@@ -146,15 +159,21 @@ add_action('admin_menu', function() {
             $offset = ($paged - 1) * $per_page;
 
             echo '<div class="wrap"><h1>' . esc_html__('Media Folder Filter', 'media-folder-dragdrop') . '</h1>';
-            echo '<form method="get" id="media-folder-filter-form">';
+            echo '<div class="wp-filter" style="margin-bottom:1.5em;">';
+            echo '<div class="filter-items">';
+            echo '<form method="get" id="media-folder-filter-form" style="display:inline-block;margin:0;">';
             echo '<input type="hidden" name="page" value="media-folder-filter">';
-            echo '<select name="media_folder" id="media-folder-select">';
+            echo '<label for="media-folder-select" class="screen-reader-text">' . esc_html__('Filter by folder', 'media-folder-dragdrop') . '</label>';
+            echo '<select name="media_folder" id="media-folder-select" class="attachment-filters" style="margin-right:10px;max-width:220px;">';
             echo '<option value="">' . esc_html__('All Folders', 'media-folder-dragdrop') . '</option>';
             foreach ($folders as $folder) {
                 printf('<option value="%d"%s>%s</option>', $folder->term_id, selected($selected, $folder->term_id, false), esc_html($folder->name));
             }
-            echo '</select> <input type="submit" class="button" value="' . esc_attr__('Filter', 'media-folder-dragdrop') . '">';
+            echo '</select>';
+            echo '<input type="submit" class="button" value="' . esc_attr__('Filter', 'media-folder-dragdrop') . '">';
             echo '</form>';
+            echo '</div>';
+            echo '</div>';
 
             // Inline JS for auto-submit on select change
             echo '<script>document.getElementById("media-folder-select").addEventListener("change", function(){document.getElementById("media-folder-filter-form").submit();});</script>';
