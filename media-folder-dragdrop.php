@@ -3,7 +3,9 @@
  * Plugin Name: Media Folder Drag & Drop
  * Description: Categorize media files with drag-and-drop folders in the WordPress Media Library.
  * Version: 1.0.0
- * Author: Stegetfore Dev
+ * Author: Tibor Berki
+ * Author URI: https://github.com/Tdude
+ * Plugin URI: https://github.com/Tdude/media-folder-drag-drop
  */
 
 if (!defined('ABSPATH')) exit;
