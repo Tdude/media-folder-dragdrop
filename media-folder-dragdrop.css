@@ -1,0 +1,72 @@
+.media-folder-badge {
+  display: inline-block;
+  background: #f1f1f1;
+  color: #0073aa;
+  border: 1px solid #d1e4f6;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-left: 6px;
+  margin-right: 2px;
+  padding: 1px 7px 1px 7px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.media-folder-badge:hover {
+  background: #0073aa;
+  color: #fff;
+}
+
+.media-folder-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.media-folder-modal .modal-content {
+  background: #fff;
+  border-radius: 8px;
+  padding: 28px 32px 20px 32px;
+  min-width: 300px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+  position: relative;
+}
+.media-folder-modal h3 {
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+.media-folder-modal .modal-tree {
+  max-height: 240px;
+  overflow-y: auto;
+  margin-bottom: 18px;
+}
+.media-folder-modal .modal-actions {
+  text-align: right;
+}
+.media-folder-modal .modal-actions .button {
+  margin-left: 8px;
+}
+.media-folder-context {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+  padding: 7px 0;
+  z-index: 99999;
+}
+.media-folder-context a {
+  display: block;
+  padding: 6px 18px;
+  color: #0073aa;
+  text-decoration: none;
+  font-size: 14px;
+}
+.media-folder-context a:hover {
+  background: #f3f3f3;
+  color: #111;
+}
