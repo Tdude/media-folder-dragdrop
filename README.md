@@ -1,6 +1,7 @@
 # Media Folder Drag & Drop
 
 Categorize media files with drag-and-drop folders in the WordPress Media Library.
+You know what to do: fork it, hack away, pull request and let me know if my time was well spent or not!
 
 ## Description
 
@@ -8,17 +9,18 @@ This plugin enhances the WordPress Media Library by allowing users to organize m
 
 ## Challenges
 
-I spent a lot of time trying to get the seemingly simple task of filtering the WordPress Media Library in list view by custom "folders" (taxonomies) to work with the default UI. Unfortunately, WordPress does not natively support this for attachments, and attempts to integrate custom taxonomies for filtering in the Media Library list view are met with significant limitations.
+I spent a lot of time trying to get the seemingly simple task of filtering the WordPress Media Library in list view by custom "folders" (taxonomies) to work with the default UI. Unfortunately, WordPress does not natively support this for attachments, and attempts to integrate custom taxonomies for filtering in the Media Library list view are met with *significant* limitations. I am sure someone has tried.
 
-There are unresolved tickets in the WordPress Core Trac regarding this issue, but as of now, no official solution exists.  
-If you have any ideas on how to make this work without creating a custom post type, please let me know! In my opinion, this is a shortcoming in WordPress that forces developers to create custom UI for media filtering-something that should be available by default.
+There are unresolved tickets in the WordPress Core Trac regarding this issue from back when Jimi Hendrix burned guitars, but as of now, no official solution exists that I could find. Except for bloated or pay versions of course. *-Hey Wordpress, where you going with that gun in your hand?*... I Wonder if Matt M gets me expelled from Github now? :)
+
+If you have any ideas on how to make this work without creating a custom post type, please let me know! In my opinion, this is a shortcoming in WordPress that forces developers to create custom UI for media filtering-something that should be available by default. You need it if you have anything more than a hundred files.
 
 > See: [WordPress Core Ticket #22938](https://core.trac.wordpress.org/ticket/22938) – "Allow filtering of media library by custom taxonomy".
 
 ## Features
 
 - Adds a hierarchical **Media Folder** taxonomy for media attachments.
-- Drag-and-drop interface to move media files between folders.
+- WIP: Drag-and-drop interface to move media files between folders.
 - AJAX-powered folder creation and folder tree retrieval.
 - Custom admin submenu pages for filtering media by folder and adding new folders.
 - Folder filtering view with pagination and bulk actions UI.
@@ -51,19 +53,16 @@ A: Yes, the plugin supports hierarchical folders allowing you to create parent a
 A: No, the plugin currently manages media organization within the WordPress admin area only.
 
 **Q: Is the drag-and-drop functionality compatible with all browsers?**  
-A: The plugin uses jQuery UI Draggable and Droppable, which are widely supported in modern browsers.
+A: This is a WIP so it depends. The plugin should use jQuery UI Draggable and Droppable, which are supported in main browsers.
 
 **Q: Can I use this plugin with other media management plugins?**  
 A: It registers a custom taxonomy for attachments and should be compatible, but conflicts depend on other plugins’ implementations.
 
-## Screenshots
-
-*(Add screenshots showing the drag-and-drop interface, folder filter submenu, and add new folder form here.)*
 
 ## Changelog
 
 ### 1.0.0
-- Initial release with drag-and-drop media folder taxonomy.
+- Initial release with media folder taxonomy.
 - AJAX folder creation and media assignment.
 - Custom admin views for folder filtering and folder creation.
 - Bulk action UI and pagination for filtered media.
